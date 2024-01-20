@@ -1,5 +1,6 @@
 package eu.tutorial.refundapp
 
+import HomeScreen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,6 +42,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
@@ -56,8 +58,6 @@ data class BottomNavigationItem(
     val unselectedIcon : ImageVector,
     val isNew :Boolean,
     val batch: Int?= null
-
-
 )
 
 
@@ -69,7 +69,11 @@ data class BottomNavigationItem(
 //Bottom Navbar
 
 fun BottomNav() {
+
+
+
     var presses by remember { mutableIntStateOf(0) }
+
 
     //used to maintain state if selected Icon
     var selectedIndex by rememberSaveable {
@@ -81,7 +85,7 @@ fun BottomNav() {
         title = "Home",
         selctedIcon = Icons.Rounded.Home,
         unselectedIcon = Icons.Outlined.Home,
-        isNew= false
+        isNew= false,
 
 
     ),
@@ -133,7 +137,7 @@ fun BottomNav() {
                                 Text(text = item.title)
 
                         },
-                        
+
                         icon = {
                             BadgedBox(badge = {
                                 if (item.batch != null){
@@ -183,8 +187,18 @@ fun BottomNav() {
             modifier = Modifier
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            Alignment.CenterHorizontally
         )
         {
+
+            // used to show the CArd of main home screen
+            when (selectedIndex) {
+                0 -> HomeScreen()
+                1 -> PurchaseItemsScreen()
+                2 ->  NotificationMainScreen()
+                // Add cases for other indexes if needed
+            }
+
 
         }
     }

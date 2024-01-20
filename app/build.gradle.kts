@@ -60,6 +60,8 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    implementation("androidx.compose.material3:material3:1.0.5")
+
     implementation("androidx.compose.material3:material3:1.1.2")
     implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
     implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha04")
